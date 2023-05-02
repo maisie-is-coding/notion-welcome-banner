@@ -1,22 +1,21 @@
-<!-- adapted from original : https://codepen.io/SeanNorton/pen/LWBXQL -->
+<!-- adapted from here: https://codepen.io/SeanNorton/pen/LWBXQL -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Bebas+Neue" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>greeting2</title>
+    <title>welcome to your notion</title>
 
     <style>
 
         
-/* CSS RESETS */
-
+/* CSS Reset */
 body{
     background-color: #fff;
     line-height: 1.6;
-
 }
 
 h1 {
@@ -25,7 +24,6 @@ h1 {
 
 
 /*CSS START*/
-
 .full-table {
     display: table;
     height: 100%;
@@ -34,13 +32,14 @@ h1 {
 
 .table-cell {
     display: table-cell;
+	width: 100%;
     vertical-align: middle;
-    text-align: center;
-    justify-content: space-between;
+	text-align: center;
+	white-space: nowrap;
 }
 
 .card {
-    padding: 10px 25px 10px 25px;
+    padding: 3px 15px 3px 15px;
     border-radius: 10px;
     background: rgb(64, 69, 101);
     width: 85vw;
@@ -49,21 +48,15 @@ h1 {
     box-shadow: 2px 2px 1px 0px rgb(97, 102, 145);
 }
 
-.card:hover {
-    margin-top: 2px;
-    box-shadow: none;
-}
-
 .clock {
     display: inline;
     font-family: 'Bebas Neue', cursive;
-    font-size: 2em;
-   
+    font-size: 2.5vmax; 
 }
 
 .time {
     display: inline;
-    min-width: 37px;
+    width: 100%;
 }
 
 .colon {
@@ -73,17 +66,16 @@ h1 {
 
 .date {
     display: inline;
-    min-width: 162px;
+    width: 100%;
     font-family: 'Bebas Neue', cursive;
-    font-size: 2em;
-    padding-right: 10px;
+    font-size: 2.5vmax;
+    padding-right: 3vw;
 }
-.greet{
-    
+.greet{    
     display:inline;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-     padding-right: 10px;
+    font-family: 'Sacramento';
+    font-size: 4vmax;
+    padding-right: 35vw;
 }
 
     </style>
@@ -93,7 +85,6 @@ h1 {
 
 <div class="full-table">
   <div class="table-cell">
-    
     <div class="card">
         <div class="greet" id="greet"></div>
       <div class="date" id="date"></div>
@@ -104,70 +95,68 @@ h1 {
         <div class="colon">:</div>
         <div class="time" id="sec"></div>
       </div>
-    </div>
-    
+    </div>   
   </div>
 </div>
-
 <script>
-    function date() {
-var today = new Date();
-document.getElementById('date').innerHTML = today.toDateString();
+
+
+function date() {
+	var today = new Date();
+	document.getElementById('date').innerHTML = today.toDateString();
 }
 
 
 function clock() {
-var today = new Date();
-var hour = zeros(twelveHour(today.getHours()));
-var minutes = zeros(today.getMinutes());
-var seconds = zeros(today.getSeconds());
-if(today.getHours() >=12){
-    seconds+=" pm"
-}
-else{
-    seconds+=" am"
-}
-hrs = today.getHours();
-if (hrs < 12)
-        greet = 'welcome! it is nice to see you &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'welcome! have you eaten recently? &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'welcome night owl! &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
-// console.log(today.toLocaleTimeString());
-document.getElementById('greet').innerHTML = greet;
-document.getElementById('hour').innerHTML = hour;
-document.getElementById('min').innerHTML = minutes;
-document.getElementById('sec').innerHTML = seconds;
+	var today = new Date();
+	var hour = zeros(twelveHour(today.getHours()));
+	var minutes = zeros(today.getMinutes());
+	var seconds = zeros(today.getSeconds());
+	if(today.getHours() >=12){
+		seconds+=" pm"
+	}
+	else{
+		seconds+=" am"
+	}
+	hrs = today.getHours();
+	if (hrs < 12)
+			greet = 'good morning!';
+		else if (hrs >= 12 && hrs <= 17)
+			greet = 'welcome! have you eaten recently?';
+		else if (hrs >= 17 && hrs <= 24)
+			greet = 'welcome night owl!';
+
+	// console.log(today.toLocaleTimeString());
+	document.getElementById('greet').innerHTML = greet;
+	document.getElementById('hour').innerHTML = hour;
+	document.getElementById('min').innerHTML = minutes;
+	document.getElementById('sec').innerHTML = seconds;
 }
 
 function twelveHour(hour) {
-if (hour > 12) {
-    return hour -= 12 
-} else if (hour === 0) {
-    return hour = 12;
-} else {
-    return hour
-}
+	if (hour > 12) {
+		return hour -= 12 
+	} else if (hour === 0) {
+		return hour = 12;
+	} else {
+		return hour
+	}
 }
     
 // adds zero infront of single digit number
 function zeros(num) {
-if (num < 10) {
-    num = '0' + num
-};
-return num;
+	if (num < 10) {
+		num = '0' + num
+	};
+	return num;
 }
 
 function dateTime() {
-date();
-clock();
-setTimeout(dateTime, 500);
+	date();
+	clock();
+	setTimeout(dateTime, 500);
 }
-
 dateTime()
-// END
 </script>
-
 </body>
 </html>
